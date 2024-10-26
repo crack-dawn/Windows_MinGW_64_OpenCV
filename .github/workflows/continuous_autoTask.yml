@@ -33,12 +33,12 @@ jobs:
           cd build
           cmake -DWITH_OPENMP=ON -DWITH_OPENCL=ON -DWITH_OPENGL=ON -DWITH_TBB=ON -DWITH_VULKAN=ON -DWITH_QT=OFF -DBUILD_WITH_DEBUG_INFO=OFF -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_PROTOBUF=OFF -DPROTOBUF_UPDATE_FILES=ON -DINSTALL_C_EXAMPLES=OFF -DINSTALL_PYTHON_EXAMPLES=ON -DCPU_BASELINE_DISABLE=SSE3 -DCPU_BASELINE_REQUIRE=SSE2 -DOPENCV_SKIP_PYTHON_LOADER=ON -DOPENCV_ENABLE_NONFREE=ON -DBUILD_opencv_world=ON -G  "MinGW Makefiles" -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules  -DCMAKE_CXX_COMPILER=g++ ..\
           cmake --build . --config Release
-          cmake --install ../install
+          cmake --install .
       - name: Windows-upload opencv artefact1
         uses: actions/upload-artifact@v4
         with:
           name: OpenCV_${{ env.VERSION }}_MinGW_Install
-          path: ./opencv/install/
+          path: ./opencv/build/install/
       - name: Windows-upload opencv artefact2
         uses: actions/upload-artifact@v4
         with:
